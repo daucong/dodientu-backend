@@ -1,4 +1,4 @@
-package com.sdt.userservice.entity;
+package ute.udn.userservice.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

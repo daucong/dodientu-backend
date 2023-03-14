@@ -1,9 +1,9 @@
-package com.sdt.userservice.dto;
+package ute.udn.userservice.dto;
 
-import com.sdt.userservice.entity.TypeUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ute.udn.userservice.entity.TypeUser;
 
 import java.util.Set;
 

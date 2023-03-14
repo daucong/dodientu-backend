@@ -1,4 +1,4 @@
-package com.sdt.userservice.dto;
+package ute.udn.userservice.dto;
 
 import lombok.Data;
 

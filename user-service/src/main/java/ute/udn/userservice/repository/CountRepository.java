@@ -1,7 +1,7 @@
-package com.sdt.userservice.repository;
+package ute.udn.userservice.repository;
 
-import com.sdt.userservice.entity.Count;
 import org.springframework.data.jpa.repository.JpaRepository;
+import ute.udn.userservice.entity.Count;
 
 public interface CountRepository extends JpaRepository<Count, Long> {
 }

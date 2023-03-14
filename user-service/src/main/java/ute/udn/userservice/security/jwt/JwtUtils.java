@@ -1,12 +1,12 @@
-package com.sdt.userservice.security.jwt;
+package ute.udn.userservice.security.jwt;
 
-import com.sdt.userservice.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+import ute.udn.userservice.security.services.UserDetailsImpl;
+
 import java.util.Date;
 
 @Component

@@ -1,15 +1,15 @@
-package com.sdt.userservice.service;
+package ute.udn.userservice.service;
 
-import com.sdt.userservice.dto.UpdatePasswordDTO;
-import com.sdt.userservice.entity.ConfirmationToken;
-import com.sdt.userservice.entity.User;
-import com.sdt.userservice.exception.BadRequestException;
-import com.sdt.userservice.exception.UpdatePasswordException;
-import com.sdt.userservice.repository.ConfirmationTokenRepository;
-import com.sdt.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ute.udn.userservice.dto.UpdatePasswordDTO;
+import ute.udn.userservice.entity.ConfirmationToken;
+import ute.udn.userservice.entity.User;
+import ute.udn.userservice.exception.BadRequestException;
+import ute.udn.userservice.exception.UpdatePasswordException;
+import ute.udn.userservice.repository.ConfirmationTokenRepository;
+import ute.udn.userservice.repository.UserRepository;
 
 import java.util.Optional;
 

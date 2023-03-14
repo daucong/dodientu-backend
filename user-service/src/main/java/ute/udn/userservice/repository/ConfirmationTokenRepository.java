@@ -1,7 +1,7 @@
-package com.sdt.userservice.repository;
+package ute.udn.userservice.repository;
 
-import com.sdt.userservice.entity.ConfirmationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
+import ute.udn.userservice.entity.ConfirmationToken;
 
 public interface ConfirmationTokenRepository extends JpaRepository<ConfirmationToken, Long> {
     ConfirmationToken findByConfirmationToken(String token);

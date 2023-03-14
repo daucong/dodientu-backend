@@ -1,7 +1,7 @@
-package com.sdt.userservice.repository;
+package ute.udn.userservice.repository;
 
-import com.sdt.userservice.entity.AccountBank;
 import org.springframework.data.jpa.repository.JpaRepository;
+import ute.udn.userservice.entity.AccountBank;
 
 public interface AccountBankRepository extends JpaRepository<AccountBank, Long> {
     AccountBank findAllByEmail(String email);

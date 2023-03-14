@@ -1,10 +1,10 @@
-package com.sdt.userservice.service;
+package ute.udn.userservice.service;
 
-import com.sdt.userservice.entity.TypeUser;
-import com.sdt.userservice.entity.User;
-import com.sdt.userservice.repository.TypeUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ute.udn.userservice.entity.TypeUser;
+import ute.udn.userservice.entity.User;
+import ute.udn.userservice.repository.TypeUserRepository;
 
 import java.util.List;
 

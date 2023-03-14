@@ -1,8 +1,8 @@
-package com.sdt.userservice.repository;
+package ute.udn.userservice.repository;
 
-import com.sdt.userservice.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import ute.udn.userservice.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUserNameOrEmail(String usernameOrEmail, String emailOrUsername);

@@ -1,13 +1,13 @@
-package com.sdt.userservice.security.services;
+package ute.udn.userservice.security.services;
 
-import com.sdt.userservice.entity.User;
-import com.sdt.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ute.udn.userservice.entity.User;
+import ute.udn.userservice.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

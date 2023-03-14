@@ -1,13 +1,13 @@
-package com.sdt.userservice.security.services;
+package ute.udn.userservice.security.services;
 
-import com.sdt.userservice.entity.RefreshToken;
-import com.sdt.userservice.exception.TokenRefreshException;
-import com.sdt.userservice.repository.RefreshTokenRepository;
-import com.sdt.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ute.udn.userservice.entity.RefreshToken;
+import ute.udn.userservice.exception.TokenRefreshException;
+import ute.udn.userservice.repository.RefreshTokenRepository;
+import ute.udn.userservice.repository.UserRepository;
 
 import java.time.Instant;
 import java.util.Optional;

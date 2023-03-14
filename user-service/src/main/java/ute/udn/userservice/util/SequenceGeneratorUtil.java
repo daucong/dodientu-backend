@@ -1,4 +1,4 @@
-package com.sdt.userservice.util;
+package ute.udn.userservice.util;
 
 import java.net.NetworkInterface;
 import java.security.SecureRandom;

@@ -1,10 +1,11 @@
-package com.sdt.userservice.controller;
+package ute.udn.userservice.controller;
 
-import com.sdt.userservice.entity.TypeUser;
-import com.sdt.userservice.service.TypeUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import ute.udn.userservice.entity.TypeUser;
+import ute.udn.userservice.service.TypeUserService;
+
 import java.util.List;
 
 @RestController

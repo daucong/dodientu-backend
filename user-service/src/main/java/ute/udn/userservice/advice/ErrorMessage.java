@@ -1,4 +1,4 @@
-package com.sdt.userservice.advice;
+package ute.udn.userservice.advice;
 
 import lombok.Data;
 

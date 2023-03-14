@@ -1,4 +1,4 @@
-package com.sdt.userservice.security.jwt;
+package ute.udn.userservice.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;

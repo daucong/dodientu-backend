@@ -1,4 +1,4 @@
-package com.sdt.userservice.entity;
+package ute.udn.userservice.entity;
 
 import javax.persistence.*;
 import lombok.Data;

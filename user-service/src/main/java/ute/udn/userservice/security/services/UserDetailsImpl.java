@@ -1,12 +1,13 @@
-package com.sdt.userservice.security.services;
+package ute.udn.userservice.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sdt.userservice.entity.TypeUser;
-import com.sdt.userservice.entity.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ute.udn.userservice.entity.TypeUser;
+import ute.udn.userservice.entity.User;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;

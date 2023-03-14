@@ -1,4 +1,4 @@
-package com.sdt.userservice.service;
+package ute.udn.userservice.service;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;

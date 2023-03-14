@@ -1,8 +1,8 @@
-package com.sdt.userservice.repository;
+package ute.udn.userservice.repository;
 
-import com.sdt.userservice.entity.TypeUser;
-import com.sdt.userservice.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import ute.udn.userservice.entity.TypeUser;
+import ute.udn.userservice.entity.User;
 
 import java.util.List;
 

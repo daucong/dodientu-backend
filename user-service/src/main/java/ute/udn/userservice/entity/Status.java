@@ -1,4 +1,4 @@
-package com.sdt.userservice.entity;
+package ute.udn.userservice.entity;
 
 public enum Status {
     DRAF_STATUS(0), UN_APRROVE_STATUS(1), APRROVE_STATUS(2), DENY_STATUS(3);

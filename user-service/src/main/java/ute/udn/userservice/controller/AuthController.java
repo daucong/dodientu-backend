@@ -1,14 +1,5 @@
-package com.sdt.userservice.controller;
+package ute.udn.userservice.controller;
 
-import com.sdt.userservice.dto.*;
-import com.sdt.userservice.entity.*;
-import com.sdt.userservice.exception.BadRequestException;
-import com.sdt.userservice.exception.TokenRefreshException;
-import com.sdt.userservice.security.jwt.JwtUtils;
-import com.sdt.userservice.security.services.CustomUserDetailsService;
-import com.sdt.userservice.security.services.RefreshTokenService;
-import com.sdt.userservice.security.services.UserDetailsImpl;
-import com.sdt.userservice.service.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +17,15 @@ import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.web.bind.annotation.*;
+import ute.udn.userservice.dto.*;
+import ute.udn.userservice.entity.*;
+import ute.udn.userservice.exception.BadRequestException;
+import ute.udn.userservice.exception.TokenRefreshException;
+import ute.udn.userservice.security.jwt.JwtUtils;
+import ute.udn.userservice.security.services.CustomUserDetailsService;
+import ute.udn.userservice.security.services.RefreshTokenService;
+import ute.udn.userservice.security.services.UserDetailsImpl;
+import ute.udn.userservice.service.*;
 
 import javax.validation.Valid;
 import java.io.BufferedReader;
@@ -347,7 +347,7 @@ public class AuthController {
     }
 
     @GetMapping("/showCount")
-    public ResponseEntity<?> showCount(){
+    public ResponseEntity<?> showCount() {
         Count count = countService.getOneById((long) 1);
         return ResponseEntity.ok(new Count(count.getId(), count.getAccess(), count.getNumberOfReg()));
     }

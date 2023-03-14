@@ -1,9 +1,9 @@
-package com.sdt.userservice.controller;
+package ute.udn.userservice.controller;
 
-import com.sdt.userservice.entity.Bank;
-import com.sdt.userservice.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ute.udn.userservice.entity.Bank;
+import ute.udn.userservice.service.BankService;
 
 import java.util.List;
 

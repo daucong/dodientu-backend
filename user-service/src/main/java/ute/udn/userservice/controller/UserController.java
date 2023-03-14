@@ -1,16 +1,16 @@
-package com.sdt.userservice.controller;
+package ute.udn.userservice.controller;
 
-import com.sdt.userservice.dto.*;
-import com.sdt.userservice.entity.*;
-import com.sdt.userservice.exception.BadRequestException;
-import com.sdt.userservice.exception.UpdatePasswordException;
-import com.sdt.userservice.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import ute.udn.userservice.dto.*;
+import ute.udn.userservice.entity.*;
+import ute.udn.userservice.exception.BadRequestException;
+import ute.udn.userservice.exception.UpdatePasswordException;
+import ute.udn.userservice.service.*;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;

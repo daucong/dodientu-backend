@@ -1,7 +1,7 @@
-package com.sdt.userservice.repository;
+package ute.udn.userservice.repository;
 
-import com.sdt.userservice.entity.Bank;
 import org.springframework.data.jpa.repository.JpaRepository;
+import ute.udn.userservice.entity.Bank;
 
 public interface BankRepository extends JpaRepository<Bank, Long> {
 }

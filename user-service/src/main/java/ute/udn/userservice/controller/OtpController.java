@@ -1,18 +1,18 @@
-package com.sdt.userservice.controller;
+package ute.udn.userservice.controller;
 
-import com.sdt.userservice.dto.ApiPassDTO;
-import com.sdt.userservice.dto.JwtDTO;
-import com.sdt.userservice.dto.VerifyEmailDTO;
-import com.sdt.userservice.entity.User;
-import com.sdt.userservice.exception.BadRequestException;
-import com.sdt.userservice.service.OtpService;
-import com.sdt.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ute.udn.userservice.dto.ApiPassDTO;
+import ute.udn.userservice.dto.JwtDTO;
+import ute.udn.userservice.dto.VerifyEmailDTO;
+import ute.udn.userservice.entity.User;
+import ute.udn.userservice.exception.BadRequestException;
+import ute.udn.userservice.service.OtpService;
+import ute.udn.userservice.service.UserService;
 
 import javax.validation.Valid;
 

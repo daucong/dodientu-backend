@@ -1,14 +1,14 @@
-package com.sdt.userservice.service;
+package ute.udn.userservice.service;
 
-import com.sdt.userservice.entity.ERole;
-import com.sdt.userservice.entity.Role;
-import com.sdt.userservice.entity.User;
-import com.sdt.userservice.exception.BadRequestException;
-import com.sdt.userservice.repository.RoleRepository;
-import com.sdt.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import ute.udn.userservice.entity.ERole;
+import ute.udn.userservice.entity.Role;
+import ute.udn.userservice.entity.User;
+import ute.udn.userservice.exception.BadRequestException;
+import ute.udn.userservice.repository.RoleRepository;
+import ute.udn.userservice.repository.UserRepository;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.sdt.userservice.entity;
+package ute.udn.userservice.entity;
 
 public enum ERole {
     ROLE_USER,
