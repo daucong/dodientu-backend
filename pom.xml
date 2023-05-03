@@ -9,6 +9,7 @@
         <module>api-gateway</module>
         <module>spring-cloud-config</module>
         <module>user-service</module>
+        <module>dodientu-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

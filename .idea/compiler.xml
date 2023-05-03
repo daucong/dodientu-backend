@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
+        <module name="dodientu-service" />
         <module name="eureka-server" />
         <module name="spring-cloud-config" />
         <module name="user-service" />
@@ -16,6 +17,7 @@
     <bytecodeTargetLevel>
       <module name="api-gateway" target="17" />
       <module name="dodientu-backend" target="17" />
+      <module name="dodientu-service" target="17" />
       <module name="eureka-server" target="17" />
       <module name="spring-cloud-config" target="17" />
       <module name="user-service" target="17" />

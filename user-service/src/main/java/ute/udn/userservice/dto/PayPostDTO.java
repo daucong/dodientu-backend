@@ -14,4 +14,6 @@ public class PayPostDTO {
     private Long userId;
 
     private BigDecimal moneyPost;
+
+    private Integer statusPlus;
 }

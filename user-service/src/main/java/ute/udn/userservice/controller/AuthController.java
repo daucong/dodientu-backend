@@ -212,7 +212,7 @@ public class AuthController {
 
         if ((confirmationToken.getExpiryDate().getTime() -
                 calendar.getTime().getTime()) <= 0) {
-            return ResponseEntity.badRequest().body("Link expired. Generate new link from http://localhost:8081/login");
+            return ResponseEntity.badRequest().body("Link expired. Generate new link from http://localhost:8081/ddt/login");
         }
 
         user.setEmailVerified(true);

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/dodientu-backend.iml" filepath="$PROJECT_DIR$/dodientu-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dodientu-service/dodientu-service.iml" filepath="$PROJECT_DIR$/dodientu-service/dodientu-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-cloud-config/spring-cloud-config.iml" filepath="$PROJECT_DIR$/spring-cloud-config/spring-cloud-config.iml" />
       <module fileurl="file://$PROJECT_DIR$/user-service/user-service.iml" filepath="$PROJECT_DIR$/user-service/user-service.iml" />

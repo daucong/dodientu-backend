@@ -1,4 +1,4 @@
-package com.sdt.apigateway;
+package ute.udn.apigateway;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

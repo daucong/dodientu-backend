@@ -83,6 +83,7 @@ public class UserController {
                 userDTO.getStatus(),
                 userDTO.getPassword(), userDTO.getTypeUser());
         user.setRoles(roles);
+        user.setSurplus(BigDecimal.valueOf(0));
         userService.saveUser(user);
 
         return ResponseEntity.ok(new MessageDTO("User update successfully!"));
@@ -186,17 +187,33 @@ public class UserController {
     public ResponseEntity<?> payPost(@RequestBody PayPostDTO payPostDTO) {
         User user = userService.getOneById(payPostDTO.getUserId());
         BigDecimal money = user.getSurplus().subtract(payPostDTO.getMoneyPost());
+
         user.setSurplus(money);
         userService.saveUser(user);
         return ResponseEntity.ok(new MessageDTO("Payment success"));
     }
 
+    @PostMapping("/bonusAdmin")
+    public ResponseEntity<?> bonusAdmin(@RequestBody BigDecimal money) {
+        AccountBank bankAdmin = accountBankService.getOneById((long) 1);
+        BigDecimal moneyForAdmin = bankAdmin.getMoney().add(money);
+
+        bankAdmin.setMoney(moneyForAdmin);
+        accountBankService.saveOrUpdate(bankAdmin);
+
+        return ResponseEntity.ok(new MessageDTO("Payment success"));
+    }
+
+
     @PostMapping("/plushPost")
     public ResponseEntity<?> plushPost(@RequestBody PayPostDTO payPostDTO) {
         User user = userService.getOneById(payPostDTO.getUserId());
-        BigDecimal money = user.getSurplus().add(payPostDTO.getMoneyPost());
-        user.setSurplus(money);
-        userService.saveUser(user);
+        BigDecimal money = null;
+        if (payPostDTO.getStatusPlus() == null){
+            money = user.getSurplus().add(payPostDTO.getMoneyPost());
+            user.setSurplus(money);
+            userService.saveUser(user);
+        }
         return ResponseEntity.ok(new MessageDTO("Success"));
     }
 }
