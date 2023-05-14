@@ -33,6 +33,8 @@ public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
             countQuery = "SELECT count(*) FROM post " ,nativeQuery = true)
     Page<Post> findAllByCategory_Id(Pageable pageable, @Param("category_id") Long categoryId);
 
+    Post findByTitle(String title);
+
     Page<Post> findAllByIsDeleteAndStatus(Pageable pageable, Boolean isDelete, Integer status);
 
     Page<Post> findAllByIsDeleteAndUserIdAndStatus(Pageable pageable, Boolean isDelete, Long userId, Integer status);

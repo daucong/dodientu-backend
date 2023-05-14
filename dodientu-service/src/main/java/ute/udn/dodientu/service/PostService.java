@@ -83,6 +83,10 @@ public class PostService {
         return postRepository.findById(id).get();
     }
 
+    public Post findByTitle(String title) {
+        return postRepository.findByTitle(title);
+    }
+
     @Transactional
     public Post save(Post entity) {
         return postRepository.save(entity);
@@ -119,6 +123,7 @@ public class PostService {
 
         Post post = postRepository.findById(id).get();
         post.setIsDelete(true);
+        post.setStatus(4);
         postRepository.save(post);
 
         return new CustomDTO(HttpStatus.OK, messageSource.getMessage("ute.udn.message.success", null, Locale.getDefault()));

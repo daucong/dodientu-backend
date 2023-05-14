@@ -27,7 +27,7 @@ public class Post extends BaseEntity {
 
     private Integer status;
 
-    private Integer statusPlus;
+    private int statusPlus;
 
     private Integer viewCount;
 

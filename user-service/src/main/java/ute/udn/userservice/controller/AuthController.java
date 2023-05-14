@@ -277,7 +277,8 @@ public class AuthController {
                 user.setAvatar(connection.getImageUrl());
                 user.setTypeUserId(typeUser);
                 user.setRoles(roles);
-                user.setStatus(1);
+
+
                 userService.saveUser(user);
                 return ResponseEntity.ok(new UserDTO(
                         user.getId(),

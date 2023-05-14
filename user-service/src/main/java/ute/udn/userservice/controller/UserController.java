@@ -152,7 +152,7 @@ public class UserController {
         if (Objects.isNull(user)) {
             return ResponseEntity.ok(new MessageDTO("Email incorrect!!"));
         }
-        if (Objects.isNull(user.getSurplus())){
+        if (Objects.isNull(user.getSurplus())) {
             user.setSurplus(BigDecimal.valueOf(0));
         }
         AccountBank accountBank = accountBankService.getAllByEmail(user.getEmail());
@@ -209,11 +209,34 @@ public class UserController {
     public ResponseEntity<?> plushPost(@RequestBody PayPostDTO payPostDTO) {
         User user = userService.getOneById(payPostDTO.getUserId());
         BigDecimal money = null;
-        if (payPostDTO.getStatusPlus() == null){
+        if (payPostDTO.getStatusPlus() == null) {
             money = user.getSurplus().add(payPostDTO.getMoneyPost());
             user.setSurplus(money);
             userService.saveUser(user);
         }
         return ResponseEntity.ok(new MessageDTO("Success"));
+    }
+
+    @PostMapping("/setStatus")
+    public ResponseEntity<?> setStatus(@RequestParam Long id, @RequestParam int status) {
+        User user = userService.getOneById(id);
+        user.setStatus(status);
+        userService.saveUser(user);
+        return ResponseEntity.ok(new MessageDTO("Success"));
+    }
+
+    @PostMapping("/paymentNotOtp")
+    public ResponseEntity paymentNotOtp(@RequestBody PaymentNotOtpDTO paymentNotOtpDTO) {
+        AccountBank accountBank = accountBankService.getAllByEmail(paymentNotOtpDTO.getEmail());
+        if (Objects.isNull(accountBank)) {
+            return ResponseEntity.ok(new MessageDTO("Email incorrect!!"));
+        }
+
+        BigDecimal money = accountBank.getMoney().subtract(paymentNotOtpDTO.getMoney());
+        accountBank.setMoney(money);
+
+        accountBankService.saveOrUpdate(accountBank);
+
+        return ResponseEntity.ok(new MessageDTO("Payment success"));
     }
 }

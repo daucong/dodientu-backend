@@ -5,9 +5,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ute.udn.dodientu.dto.CountPostDTO;
 import ute.udn.dodientu.dto.CustomDTO;
+import ute.udn.dodientu.dto.MessageDTO;
+import ute.udn.dodientu.dto.SubtractCheckoutDTO;
 import ute.udn.dodientu.entity.Post;
 import ute.udn.dodientu.service.PostService;
 
@@ -24,18 +27,17 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-
     @GetMapping
     public Page<Post> findAllSearch(@RequestParam(name = "isDelete", required = false) Boolean isDelete,
-                              @RequestParam(name = "status", required = false) Integer status,
-                              @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
-                              @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit,
-                              @RequestParam(name = "sortName", required = false, defaultValue = "DESC") String sortname,
-                              @RequestParam(name = "sortBy", required = false, defaultValue = "id") String sortby,
-                              @RequestParam(name = "query", defaultValue = "") String query,
-                              @RequestParam(name = "provinceId", required = false) Long provinceId,
-                              @RequestParam(name = "categoryId", required = false) Long categoryId,
-                              @RequestParam(name = "showAll", defaultValue = "") String showAll) throws Exception {
+                                    @RequestParam(name = "status", required = false) Integer status,
+                                    @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
+                                    @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit,
+                                    @RequestParam(name = "sortName", required = false, defaultValue = "DESC") String sortname,
+                                    @RequestParam(name = "sortBy", required = false, defaultValue = "id") String sortby,
+                                    @RequestParam(name = "query", defaultValue = "") String query,
+                                    @RequestParam(name = "provinceId", required = false) Long provinceId,
+                                    @RequestParam(name = "categoryId", required = false) Long categoryId,
+                                    @RequestParam(name = "showAll", defaultValue = "") String showAll) throws Exception {
 
         Sort sort = Sort.by(Sort.Direction.fromString(sortname), sortby);
         Pageable pageable = PageRequest.of(page - 1, limit, sort);
@@ -47,8 +49,17 @@ public class PostController {
         if (categoryId != null) {
             return postService.findAllByCategory_Id(pageable, categoryId);
         }
-
-        return postService.showFindAll(pageable);
+        Page<Post> data = postService.showFindAll(pageable);
+        int size = data.getContent().size();
+        for (int i = 0; i < size; i++) {
+            Long item = data.getContent().get(i).getId();
+            Post post = postService.findById(item);
+            if (post.getQuantity() == 0) {
+                post.setIsDelete(true);
+                postService.save(post);
+            }
+        }
+        return data;
     }
 
     @GetMapping("/admin")
@@ -87,6 +98,11 @@ public class PostController {
         return postService.findById(id);
     }
 
+    @GetMapping("/detail")
+    public Post findByTitle(@RequestParam String title) {
+        return postService.findByTitle(title);
+    }
+
     @GetMapping("/user")
     public Page<Post> findAllByUsers(@RequestParam(name = "isDelete", required = false) Boolean isDelete,
                                      @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
@@ -110,8 +126,10 @@ public class PostController {
         Date date = new Date();
         if (Objects.isNull(post.getId())) {
             post.setCreatedDate(formatter.format(date));
+            post.setStatusPlus(0);
         } else {
             Post postOld = postService.findById(post.getId());
+            post.setIsDelete(false);
             post.setCreatedDate(postOld.getCreatedDate());
             post.setModifyDate(formatter.format(date));
         }
@@ -140,10 +158,16 @@ public class PostController {
         postService.save(post);
     }
 
-    @PostMapping("/setStatusPlus")
-    public void setStatusPlus(@RequestBody Long id) {
-        Post post = postService.findById(id);
-        post.setStatusPlus(1);
+    @PostMapping("/subtractCheckout")
+    public ResponseEntity<?> subtractCheckout(@RequestBody SubtractCheckoutDTO subtractCheckoutDTO) {
+        Post post = postService.findById(subtractCheckoutDTO.getPostId());
+        if (post.getQuantity() < subtractCheckoutDTO.getQuality()) {
+            return ResponseEntity.ok(new MessageDTO("Số lượng hiện tại không đáp ứng nhu cầu"));
+        }
+        post.setQuantity(post.getQuantity() - subtractCheckoutDTO.getQuality());
         postService.save(post);
+        return ResponseEntity.ok(new MessageDTO("Lưu thành công"));
     }
+
+
 }
