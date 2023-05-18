@@ -20,6 +20,10 @@ public class CartService {
         return cartRepository.findById(id).get();
     }
 
+    public Cart finByPostId(Long postId, Long userId) {
+        return cartRepository.findAllByPostIdAndUserId(postId, userId);
+    }
+
     public Cart saveOrUpdate(Cart entity) {
         return cartRepository.save(entity);
     }

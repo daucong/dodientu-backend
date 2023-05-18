@@ -60,9 +60,14 @@ public class CheckOutController {
         checkOutService.delete(id);
     }
 
+    @DeleteMapping("/detail/{id}")
+    public void deleteDetail(@PathVariable("id") Long id) {
+        checkOutService.deleteDetail(id);
+    }
+
     @PostMapping("/setStatus")
     public ResponseEntity<?> setStatus(@RequestBody StatusDTO dto) {
-        checkOutService.saveStatus(dto.getDetailId(), dto.getStatus());
+        checkOutService.saveStatus(dto.getDetailId(), dto.getStatus(), dto.getMessageDestroy());
         return ResponseEntity.ok(new MessageDTO("Lưu thành công!"));
     }
 }

@@ -38,14 +38,20 @@ public class CheckOutService {
         return checkOutDetailRepository.save(detailCheckOut);
     }
 
-    public detailCheckOut saveStatus(Long id, int status) {
+    public detailCheckOut saveStatus(Long id, int status, String messageDestroy) {
         detailCheckOut detailCheckOut = checkOutDetailRepository.findById(id).get();
         detailCheckOut.setStatus(status);
+        detailCheckOut.setMessageDestroy(messageDestroy);
         return checkOutDetailRepository.save(detailCheckOut);
     }
 
     public boolean delete(Long id) {
         checkOutRepository.deleteById(id);
+        return false;
+    }
+
+    public boolean deleteDetail(Long id) {
+        checkOutDetailRepository.deleteById(id);
         return false;
     }
 }

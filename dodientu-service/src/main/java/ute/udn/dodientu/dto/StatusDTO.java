@@ -7,4 +7,5 @@ public class StatusDTO {
 
     private Long detailId;
     private int status;
+    private String messageDestroy;
 }

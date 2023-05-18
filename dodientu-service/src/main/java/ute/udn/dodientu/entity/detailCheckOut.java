@@ -29,4 +29,6 @@ public class detailCheckOut {
 
     private String type;
 
+    private String messageDestroy;
+
 }

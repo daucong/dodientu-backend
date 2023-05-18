@@ -3,6 +3,7 @@ package ute.udn.dodientu.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ute.udn.dodientu.dto.CartDTO;
 import ute.udn.dodientu.dto.MessageDTO;
 import ute.udn.dodientu.entity.Cart;
 import ute.udn.dodientu.service.CartService;
@@ -33,6 +34,12 @@ public class CartController {
     public Cart findById(@PathVariable("id") Long id) {
         return cartService.getOneById(id);
     }
+
+    @PostMapping("/post")
+    public Cart findByPostId(@RequestBody CartDTO cartDTO) {
+        return cartService.finByPostId(cartDTO.getPostId(), cartDTO.getUserId());
+    }
+
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id) {
