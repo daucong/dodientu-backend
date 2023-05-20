@@ -169,5 +169,19 @@ public class PostController {
         return ResponseEntity.ok(new MessageDTO("Lưu thành công"));
     }
 
+    @PostMapping("/plusCheckout")
+    public ResponseEntity<?> plusCheckout(@RequestBody SubtractCheckoutDTO subtractCheckoutDTO) {
+        Post post = postService.findById(subtractCheckoutDTO.getPostId());
+        post.setQuantity(post.getQuantity() + subtractCheckoutDTO.getQuality());
+        if(!post.getIsDelete()){
+            post.setIsDelete(true);
+        }
+        if (post.getStatus()==4){
+            post.setStatus(2);
+        }
+        postService.save(post);
+        return ResponseEntity.ok(new MessageDTO("Lưu thành công"));
+    }
+
 
 }

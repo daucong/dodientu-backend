@@ -55,6 +55,11 @@ public class CheckOutController {
         return checkOutService.getOneById(id);
     }
 
+    @GetMapping("/detailId/{id}")
+    public detailCheckOut findByIdDetail(@PathVariable("id") Long id) {
+        return checkOutService.findByIdDetail(id);
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id) {
         checkOutService.delete(id);

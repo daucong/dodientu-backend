@@ -22,6 +22,10 @@ public class CheckOutService {
         return checkOutRepository.findById(id).get();
     }
 
+    public detailCheckOut findByIdDetail(Long id) {
+        return checkOutDetailRepository.findById(id).get();
+    }
+
     public Page<detailCheckOut> findByStatus(Pageable pageable, int status) {
         return checkOutDetailRepository.findByStatus(pageable, status);
     }
