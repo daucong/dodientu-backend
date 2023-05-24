@@ -7,15 +7,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ute.udn.dodientu.dto.CountPostDTO;
-import ute.udn.dodientu.dto.CustomDTO;
-import ute.udn.dodientu.dto.MessageDTO;
-import ute.udn.dodientu.dto.SubtractCheckoutDTO;
+import ute.udn.dodientu.dto.*;
 import ute.udn.dodientu.entity.Post;
+import ute.udn.dodientu.repository.PostRepository;
 import ute.udn.dodientu.service.PostService;
 
 import javax.validation.Valid;
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -26,6 +26,9 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private PostRepository postRepository;
 
     @GetMapping
     public Page<Post> findAllSearch(@RequestParam(name = "isDelete", required = false) Boolean isDelete,
@@ -173,15 +176,41 @@ public class PostController {
     public ResponseEntity<?> plusCheckout(@RequestBody SubtractCheckoutDTO subtractCheckoutDTO) {
         Post post = postService.findById(subtractCheckoutDTO.getPostId());
         post.setQuantity(post.getQuantity() + subtractCheckoutDTO.getQuality());
-        if(!post.getIsDelete()){
-            post.setIsDelete(true);
+        if (!post.getIsDelete()) {
+            post.setIsDelete(false);
         }
-        if (post.getStatus()==4){
+        if (post.getStatus() == 4) {
             post.setStatus(2);
         }
         postService.save(post);
         return ResponseEntity.ok(new MessageDTO("Lưu thành công"));
     }
 
+    @GetMapping("/post-by-province")
+    public ResponseEntity<?> countPostByProvince() {
+        List<Object[]> results = postRepository.countPostByProvince();
+        List<PostByProvinceDTO> postByProvinces = new ArrayList<>();
+        for (Object[] result : results) {
+            int year = (int) result[0];
+            int month = (int) result[1];
+            String provinceName = (String) result[2];
+            BigInteger totalQuantity = (BigInteger) result[3];
+            postByProvinces.add(new PostByProvinceDTO(year, month, provinceName, totalQuantity.longValue()));
+        }
+        return ResponseEntity.ok(postByProvinces);
+    }
+
+    @GetMapping("/post-by-mounth")
+    public ResponseEntity<?> countPostByMounth() {
+        List<Object[]> results = postRepository.countPostByMount();
+        List<PostByMounthDTO> postByMounts = new ArrayList<>();
+        for (Object[] result : results) {
+            int year = (int) result[0];
+            int month = (int) result[1];
+            BigInteger totalQuantity = (BigInteger) result[2];
+            postByMounts.add(new PostByMounthDTO(year, month, totalQuantity.longValue()));
+        }
+        return ResponseEntity.ok(postByMounts);
+    }
 
 }

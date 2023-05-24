@@ -83,7 +83,11 @@ public class UserController {
                 userDTO.getStatus(),
                 userDTO.getPassword(), userDTO.getTypeUser());
         user.setRoles(roles);
-        user.setSurplus(BigDecimal.valueOf(0));
+        if (Objects.isNull(user.getId())){
+            user.setSurplus(BigDecimal.valueOf(0));
+        }else {
+            user.setSurplus(oldUser.getSurplus());
+        }
         userService.saveUser(user);
 
         return ResponseEntity.ok(new MessageDTO("User update successfully!"));
