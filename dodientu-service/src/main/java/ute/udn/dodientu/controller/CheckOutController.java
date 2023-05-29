@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import ute.udn.dodientu.dto.MessageDTO;
 import ute.udn.dodientu.dto.StatusDTO;
 import ute.udn.dodientu.entity.CheckOut;
+import ute.udn.dodientu.entity.ReportUserToPayment;
 import ute.udn.dodientu.entity.detailCheckOut;
 import ute.udn.dodientu.service.CheckOutService;
 
@@ -74,5 +75,10 @@ public class CheckOutController {
     public ResponseEntity<?> setStatus(@RequestBody StatusDTO dto) {
         checkOutService.saveStatus(dto.getDetailId(), dto.getStatus(), dto.getMessageDestroy());
         return ResponseEntity.ok(new MessageDTO("Lưu thành công!"));
+    }
+
+    @GetMapping("/reportUserToPayment")
+    public List<ReportUserToPayment> findByReportUserToPayment() {
+        return checkOutService.getAllReportUserToPayment();
     }
 }

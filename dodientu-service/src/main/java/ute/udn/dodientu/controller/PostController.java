@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ute.udn.dodientu.dto.*;
 import ute.udn.dodientu.entity.Post;
+import ute.udn.dodientu.entity.ReportToDuyet;
+import ute.udn.dodientu.entity.ReportUserToPayment;
 import ute.udn.dodientu.repository.PostRepository;
 import ute.udn.dodientu.service.PostService;
 
@@ -104,6 +106,11 @@ public class PostController {
     @GetMapping("/detail")
     public Post findByTitle(@RequestParam String title) {
         return postService.findByTitle(title);
+    }
+
+    @GetMapping("/reportToDuyet")
+    public List<ReportToDuyet> findByReportToDuyet() {
+        return postService.getAllReportToDuyet();
     }
 
     @GetMapping("/user")

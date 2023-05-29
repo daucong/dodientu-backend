@@ -14,11 +14,15 @@ import ute.udn.dodientu.dto.CustomDTO;
 import ute.udn.dodientu.dto.PostImageDTO;
 import ute.udn.dodientu.entity.Post;
 import ute.udn.dodientu.entity.PostImage;
+import ute.udn.dodientu.entity.ReportToDuyet;
 import ute.udn.dodientu.exception.NotFoundException;
 import ute.udn.dodientu.repository.PostImageRepository;
 import ute.udn.dodientu.repository.PostRepository;
+import ute.udn.dodientu.repository.ReportToDuyetRepository;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -34,6 +38,8 @@ public class PostService {
     PostRepository postRepository;
     @Autowired
     PostImageRepository postImageRepository;
+    @Autowired
+    ReportToDuyetRepository reportToDuyetRepository;
     @Autowired
     ResourceBundleMessageSource messageSource;
 
@@ -99,9 +105,26 @@ public class PostService {
         }
         Post entity = new Post();
         entity = postRepository.findById(postId).get();
+
+        if (status == 2){
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+
+            ReportToDuyet reportToDuyet = new ReportToDuyet();
+            reportToDuyet.setPost(entity);
+            reportToDuyet.setCreateDate(formatter.format(date));
+            reportToDuyet.setTotalMoneyPost(entity.getPrice());
+            reportToDuyet.setTotalQuality(entity.getQuantity());
+            reportToDuyet.setTotalMoneyToTypePost(entity.getPostPrice());
+            reportToDuyetRepository.save(reportToDuyet);
+        }
         entity.setStatus(status);
         entity.setAdminMessage(message);
         return postRepository.save(entity);
+    }
+
+    public List<ReportToDuyet> getAllReportToDuyet() {
+        return reportToDuyetRepository.findAll();
     }
 
     public PostImage saveImage(PostImageDTO postImageDTO) {
