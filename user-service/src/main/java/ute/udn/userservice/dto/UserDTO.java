@@ -34,9 +34,10 @@ public class UserDTO {
 
     private Set<String> role;
 
-    public UserDTO(Long id, String email, String password, int status) {
+    public UserDTO(Long id, String email, String userName, String password, int status) {
         this.id = id;
         this.email = email;
+        this.userName = userName;
         this.password = password;
         this.status = status;
     }

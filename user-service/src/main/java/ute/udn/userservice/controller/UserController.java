@@ -199,11 +199,11 @@ public class UserController {
 
     @PostMapping("/bonusAdmin")
     public ResponseEntity<?> bonusAdmin(@RequestBody BigDecimal money) {
-        AccountBank bankAdmin = accountBankService.getOneById((long) 1);
-        BigDecimal moneyForAdmin = bankAdmin.getMoney().add(money);
+        User user = userService.getOneById((long) 1);
+        BigDecimal moneyForAdmin = user.getSurplus().add(money);
 
-        bankAdmin.setMoney(moneyForAdmin);
-        accountBankService.saveOrUpdate(bankAdmin);
+        user.setSurplus(moneyForAdmin);
+        userService.saveUser(user);
 
         return ResponseEntity.ok(new MessageDTO("Payment success"));
     }

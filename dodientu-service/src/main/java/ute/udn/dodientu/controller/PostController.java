@@ -220,4 +220,18 @@ public class PostController {
         return ResponseEntity.ok(postByMounts);
     }
 
+    @GetMapping("/post-by-category")
+    public ResponseEntity<?> countPostByCategory() {
+        List<Object[]> results = postRepository.countPostByCategory();
+        List<PostByCategoryDTO> postByCategoryDTOS = new ArrayList<>();
+        for (Object[] result : results) {
+            int year = (int) result[0];
+            int month = (int) result[1];
+            String categoryName = (String) result[2];
+            BigInteger totalQuantity = (BigInteger) result[3];
+            postByCategoryDTOS.add(new PostByCategoryDTO(year, month, categoryName, totalQuantity.longValue()));
+        }
+        return ResponseEntity.ok(postByCategoryDTOS);
+    }
+
 }

@@ -68,4 +68,9 @@ public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
             "GROUP BY YEAR(post_date), MONTH(post_date);", nativeQuery = true)
     List<Object[]> countPostByMount();
 
+    @Query(value = "SELECT YEAR(post_date) AS year, MONTH(post_date) AS month, category.name, count(post.id) AS total_quantity " +
+            "FROM post " +
+            "JOIN category ON post.category_id = category.id " +
+            "GROUP BY YEAR(post_date), MONTH(post_date), category.name;", nativeQuery = true)
+    List<Object[]> countPostByCategory();
 }

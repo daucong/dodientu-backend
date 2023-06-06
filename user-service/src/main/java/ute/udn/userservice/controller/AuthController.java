@@ -32,6 +32,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -254,13 +255,15 @@ public class AuthController {
             Facebook facebook = connection.getApi();
             String[] fields = {"email"};
             User userProfile = facebook.fetchObject("me", User.class, fields);
-            if (userService.existsByEmail(userProfile.getEmail())) {
-                User oldPass = userService.findByEmail(userProfile.getEmail());
+            String userName = "facebook"+userProfile.getId();
+            if (userService.existsByUserName(userName)) {
+                User oldPass = userService.getOneByUserName(userName);
                 userProfile.setPassword(oldPass.getPassword());
                 userProfile.setId(oldPass.getId());
                 return ResponseEntity.ok(new UserDTO(
                         userProfile.getId(),
                         userProfile.getEmail(),
+                        oldPass.getUserName(),
                         userProfile.getPassword(),
                         oldPass.getStatus()));
             } else {
@@ -277,12 +280,14 @@ public class AuthController {
                 user.setAvatar(connection.getImageUrl());
                 user.setTypeUserId(typeUser);
                 user.setRoles(roles);
-
+                user.setSurplus(BigDecimal.valueOf(0));
+                user.setStatus(1);
 
                 userService.saveUser(user);
                 return ResponseEntity.ok(new UserDTO(
                         user.getId(),
                         user.getEmail(),
+                        user.getUserName(),
                         user.getPassword(),
                         user.getStatus()));
             }
@@ -312,6 +317,7 @@ public class AuthController {
                 return ResponseEntity.ok(new UserDTO(
                         oldUser.getId(),
                         oldUser.getEmail(),
+                        oldUser.getUserName(),
                         oldUser.getPassword(),
                         oldUser.getStatus()));
             } else {
@@ -334,6 +340,7 @@ public class AuthController {
                 return ResponseEntity.ok(new UserDTO(
                         user.getId(),
                         user.getEmail(),
+                        user.getUserName(),
                         user.getPassword(),
                         user.getStatus()));
             }
